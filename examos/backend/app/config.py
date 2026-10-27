@@ -12,7 +12,7 @@ class Settings:
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./data/uploads")
     MAX_UPLOAD_MB: int = int(os.getenv("MAX_UPLOAD_MB", "20"))
     FRONTEND_ORIGIN: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
-    LLM_MODEL: str = "claude-sonnet-4-6"
+    LLM_MODEL: str = os.getenv("LLM_MODEL", "claude-3-5-sonnet-20241022")
 
     @property
     def DEMO_MODE(self) -> bool:

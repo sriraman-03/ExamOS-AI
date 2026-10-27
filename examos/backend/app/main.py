@@ -12,9 +12,12 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ExamOS AI", version="1.0.0")
 
+raw_origins = [o.strip() for o in settings.FRONTEND_ORIGIN.split(",") if o.strip()]
+allowed_origins = list(set(raw_origins + ["http://localhost:5173", "http://127.0.0.1:5173"]))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_ORIGIN, "http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
